@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=04_allign_reads
-#SBATCH --output=04_allign_reads.out
-#SBATCH --error=04_allign_reads.err
+#SBATCH --output=../out/04_allign_reads.out
+#SBATCH --error=../err/04_allign_reads.err
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=8G

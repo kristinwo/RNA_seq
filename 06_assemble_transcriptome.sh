@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=06_assemble_transcriptome
-#SBATCH --output=06_assemble_transcriptome.out
-#SBATCH --error=06_assemble_transcriptome.err
+#SBATCH --output=../out/06_assemble_transcriptome.out
+#SBATCH --error=../err/06_assemble_transcriptome.err
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=8G

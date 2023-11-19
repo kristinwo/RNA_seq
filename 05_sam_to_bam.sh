@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=05_sam_to_bam
-#SBATCH --output=05_sam_to_bam.out
-#SBATCH --error=05_sam_to_bam.err
+#SBATCH --output=../out/05_sam_to_bam.out
+#SBATCH --error=../err/05_sam_to_bam.err
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=8G

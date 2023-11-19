@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=03_building_genome_index
-#SBATCH --output=03_building_genome_index.out
-#SBATCH --error=03_building_genome_index.err
+#SBATCH --output=../out/03_building_genome_index.out
+#SBATCH --error=../err/03_building_genome_index.err
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=8G

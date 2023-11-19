@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=02_quality_control
-#SBATCH --output=02_quality_control.out
-#SBATCH --error=02_quality_control.err
+#SBATCH --output=../out/02_quality_control.out
+#SBATCH --error=../err/02_quality_control.err
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=25G
