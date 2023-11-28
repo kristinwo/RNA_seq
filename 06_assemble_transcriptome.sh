@@ -17,6 +17,9 @@ BAM_FILE_DIR=/data/users/kolsen/rna_seq/bam_files
 REFERENCE_FILE_DIR=/data/users/kolsen/rna_seq/reference_files
 GTF_FILES_DIR=/data/users/kolsen/rna_seq/gtf_files
 
+# Reference file to be used (Comprehensive gene annotation - CHR)
+REFERENCE_FILE=/data/users/kolsen/rna_seq/reference_files/gencode.v44.annotation_comprehensive_CHR.gtf
+
 # List all bam files should be assembled
 FILES=($BAM_FILE_DIR/sorted_*.bam)
 
@@ -27,5 +30,5 @@ FILENAME=$(basename "${FILES[$SLURM_ARRAY_TASK_ID]}" .bam | sed 's/sorted_//')
 GTF_FILES=($GTF_FILES_DIR/*.gtf)
 
 # Do transcriptome assembly with stringtie and merge the gtf files
-stringtie -o $GTF_FILES_DIR/$FILENAME.gtf -p 6 --rf -G $REFERENCE_FILE_DIR/gencode.v44.annotation.gff3 ${FILES[$SLURM_ARRAY_TASK_ID]}
-stringtie --merge -o $GTF_FILES_DIR/merged/merged.gtf -G $REFERENCE_FILE_DIR/gencode.v44.annotation.gff3 $GTF_FILES
+stringtie -o $GTF_FILES_DIR/$FILENAME.gtf -p 6 --rf -G $REFERENCE_FILE ${FILES[$SLURM_ARRAY_TASK_ID]}
+stringtie --merge -o $GTF_FILES_DIR/merged/merged.gtf -G $REFERENCE_FILE ${GTF_FILES[@]}

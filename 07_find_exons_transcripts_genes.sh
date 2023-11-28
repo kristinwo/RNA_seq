@@ -10,25 +10,23 @@
 
 MERGED_GTF_FILE=/data/users/kolsen/rna_seq/gtf_files/merged/merged.gtf
 
-# Parse gtf file?
-
 # Count exons
-echo "Number of exons: $(awk '$3 == "exon"' $MERGED_GTF_FILE | wc -l)"
+echo "Number of exons: $(awk '$3 == "exon"' $MERGED_GTF_FILE | sort | uniq | wc -l)"
 
 # Count transcripts
-echo "Numer of transcripts: $(awk '$3 == "transcript" {print $12}' $MERGED_GTF_FILE | sort | uniq | wc -l)" # maybe not uniq and sort here?
+echo "Number of transcripts: $(awk '$3 == "transcript" {print $12}' $MERGED_GTF_FILE | sort | uniq | wc -l)"
 
 # Count genes
-echo "Number of genes: $(awk '$3 == "exon" {print $10}' $MERGED_GTF_FILE | sort | uniq | wc -l)" # maybe not uniq and sort here?
+echo "Number of genes: $(awk '{print $10}' $MERGED_GTF_FILE | sort | uniq | wc -l)" 
 
 # Count novel transcripts
-echo "Numer of novel transcripts: $(awk '$3 == "transcript" {print $12}' $MERGED_GTF_FILE | sort | uniq | grep -v 'ENST' | wc -l)"
+echo "Number of novel transcripts: $(awk '$3 == "transcript" {print $12}' $MERGED_GTF_FILE | sort | uniq | grep -v 'ENST' | wc -l)"
 
 # Count novel genes (does not have a GENCODE identifier)
-echo "Number of novel genes: $(awk '$3 == "exon" {print $10}' $MERGED_GTF_FILE | sort | uniq | grep -v 'ENSG' | wc -l)"
+echo "Number of novel genes: $(awk '{print $10}' $MERGED_GTF_FILE | sort | uniq | grep -v 'ENSG' | wc -l)"
 
 # Count single exon transcripts
-echo "Numer of single exon transcripts: $(awk '$3 == "exon" {print $12}' $MERGED_GTF_FILE | sort | uniq -c | awk '$1 == 1' | wc -l)"
+echo "Number of single exon transcripts: $(awk '$3 == "exon" {print $12}' $MERGED_GTF_FILE | sort | uniq -c | awk '$1 == 1' | wc -l)"
 
 # Count single exon genes
 echo "Number of single exon genes: $(awk '$3 == "exon" {print $10}' $MERGED_GTF_FILE | sort | uniq -c | awk '$1 == 1' | wc -l)"
