@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-#SBATCH --job-name=counts
-#SBATCH --output=../out/counts.out
-#SBATCH --error=../err/counts.err
+#SBATCH --job-name=01_counts
+#SBATCH --output=../out/01_counts.out
+#SBATCH --error=../err/01_counts.err
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=4G
