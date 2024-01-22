@@ -22,6 +22,9 @@ FILES=($SAM_FILE_DIR/*.sam)
 # Get the filename of the sam-files
 FILENAME=$(basename "${FILES[$SLURM_ARRAY_TASK_ID]}" .sam)
 
+# Convert sam-file to bam-file
 samtools view -b -o $BAM_FILE_DIR/$FILENAME.bam ${FILES[$SLURM_ARRAY_TASK_ID]}
+# Sort bam-files
 samtools sort -O bam $BAM_FILE_DIR/$FILENAME.bam -o $BAM_FILE_DIR/sorted_$FILENAME.bam
+# Index bam-files
 samtools index $BAM_FILE_DIR/sorted_$FILENAME.bam

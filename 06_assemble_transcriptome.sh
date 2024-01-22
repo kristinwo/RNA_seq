@@ -17,7 +17,7 @@ BAM_FILE_DIR=/data/users/kolsen/rna_seq/bam_files
 REFERENCE_FILE_DIR=/data/users/kolsen/rna_seq/reference_files
 GTF_FILES_DIR=/data/users/kolsen/rna_seq/gtf_files
 
-# Reference file to be used (Comprehensive gene annotation - CHR)
+# Reference file to be used (Comprehensive gene annotation - CHR - GRCh38.p14)
 REFERENCE_FILE=/data/users/kolsen/rna_seq/reference_files/gencode.v44.annotation_comprehensive_CHR.gtf
 
 # List all bam files should be assembled

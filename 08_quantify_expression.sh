@@ -14,20 +14,20 @@ module load UHTS/Analysis/HTSeq/0.9.1
 
 # Directories and files
 MERGED_GTF_FILE=/data/users/kolsen/rna_seq/gtf_files/merged/merged.gtf
-BAM_FILES_DIR=/data/users/kolsen/rna_seq/bam_files
+SAM_FILES_DIR=/data/users/kolsen/rna_seq/sam_files
 TSV_DIR=/data/users/kolsen/rna_seq/out/08_tsv
 
 # List files
 GTF_FILES=($GTF_FILES_DIR/*.gtf)
-BAM_FILES=($BAM_FILES_DIR/sorted_*.bam)
+SAM_FILES=($SAM_FILES_DIR/*.sam)
 GENE_TSV_FILES=($TSV_DIR/*gene.tsv)
 TRANSCRIPT_TSV_FILES=($TSV_DIR/*transcript.tsv)
 
-FILENAME=$(basename "${BAM_FILES[$SLURM_ARRAY_TASK_ID]}" .bam | sed 's/sorted_//')
+FILENAME=$(basename "${SAM_FILES[$SLURM_ARRAY_TASK_ID]}" .sam)
 
 # Quantify gene and transcriptome expression
-htseq-count -f bam -s reverse ${BAM_FILES[$SLURM_ARRAY_TASK_ID]} $MERGED_GTF_FILE > $TSV_DIR/${FILENAME}_gene.tsv
-htseq-count -f bam -s reverse -i transcript_id ${BAM_FILES[$SLURM_ARRAY_TASK_ID]} $MERGED_GTF_FILE > $TSV_DIR/${FILENAME}_transcript.tsv
+htseq-count -f sam -s reverse ${SAM_FILES[$SLURM_ARRAY_TASK_ID]} $MERGED_GTF_FILE > $TSV_DIR/${FILENAME}_gene.tsv
+htseq-count -f sam -s reverse -i transcript_id ${SAM_FILES[$SLURM_ARRAY_TASK_ID]} $MERGED_GTF_FILE > $TSV_DIR/${FILENAME}_transcript.tsv
 
 # Count number of genes and transcripts in total
 echo "Genes in $FILENAME:" $(awk '$2 > 0 {print $1}' ${GENE_TSV_FILES[$SLURM_ARRAY_TASK_ID]} | sort | uniq | wc -l)
